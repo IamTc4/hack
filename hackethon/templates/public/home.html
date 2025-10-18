@@ -1,0 +1,47 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4">XIE Student Council</h1>
+            <p class="lead">The central hub for all fests and events.</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2 class="text-center">Live Stream</h2>
+            <div class="ratio ratio-16x9">
+                {% set video_id = youtube_url | youtube_video_id %}
+                {% if video_id %}
+                    <iframe src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% else %}
+                    <div class="d-flex justify-content-center align-items-center bg-dark text-white">
+                        <p>No live stream is currently active.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-center">Our Fests</h2>
+        </div>
+        {% for fest in fests %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ fest.name }}</h5>
+                    <p class="card-text">{{ fest.description }}</p>
+                    <a href="{{ url_for('public.fest_details', fest_id=fest.id) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

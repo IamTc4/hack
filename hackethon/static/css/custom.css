@@ -1,0 +1,49 @@
+/* Custom CSS for XIE Student Council Platform */
+
+body {
+    background-color: #121212; /* Dark background */
+    color: #FFFFFF; /* White text */
+}
+
+.navbar {
+    background-color: #000080 !important; /* Deep Navy Blue */
+}
+
+.navbar-brand, .nav-link {
+    color: #FFFFFF !important;
+}
+
+.nav-link:hover {
+    color: #FFD700 !important; /* Bright Gold on hover */
+}
+
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #000080;
+}
+
+.card-title {
+    color: #FFD700; /* Bright Gold */
+}
+
+.btn-primary {
+    background-color: #000080;
+    border-color: #000080;
+}
+
+.btn-primary:hover {
+    background-color: #00005c;
+    border-color: #00005c;
+}
+
+.leaderboard-gold {
+    color: #FFD700;
+}
+
+.leaderboard-silver {
+    color: #C0C0C0;
+}
+
+.leaderboard-bronze {
+    color: #CD7F32;
+}

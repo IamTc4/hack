@@ -1,0 +1,31 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Department Standings</h1>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Department</th>
+                    <th scope="col" class="leaderboard-gold">Gold</th>
+                    <th scope="col" class="leaderboard-silver">Silver</th>
+                    <th scope="col" class="leaderboard-bronze">Bronze</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department, medals in standings %}
+                <tr>
+                    <td>{{ department }}</td>
+                    <td class="leaderboard-gold">{{ medals.gold }}</td>
+                    <td class="leaderboard-silver">{{ medals.silver }}</td>
+                    <td class="leaderboard-bronze">{{ medals.bronze }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

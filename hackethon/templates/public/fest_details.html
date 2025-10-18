@@ -1,0 +1,25 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}{{ fest.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{ fest.name }}</h1>
+            <p class="lead">{{ fest.description }}</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2>Events</h2>
+            <div class="list-group">
+                {% for event in fest.events %}
+                    <a href="{{ url_for('public.event_details', event_id=event.id) }}" class="list-group-item list-group-item-action bg-dark text-white">{{ event.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

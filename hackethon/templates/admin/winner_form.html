@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Winner</title>
+</head>
+<body>
+    <h1>Add Winner</h1>
+    <form method="POST">
+        <label>Name</label>
+        <input type="text" name="name" required>
+        <br>
+        <label>Class</label>
+        <select name="class_id" required>
+            {% for class in classes %}
+            <option value="{{ class.id }}">{{ class.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Event</label>
+        <select name="event_id" required>
+            {% for event in events %}
+            <option value="{{ event.id }}">{{ event.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Medal</label>
+        <select name="medal" required>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+            <option value="Bronze">Bronze</option>
+        </select>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+    <br>
+    <a href="{{ url_for('admin.list_winners') }}">Back to Winners</a>
+</body>
+</html>

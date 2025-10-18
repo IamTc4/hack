@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ 'Edit' if fest else 'Add' }} Fest</title>
+</head>
+<body>
+    <h1>{{ 'Edit' if fest else 'Add' }} Fest</h1>
+    <form method="POST">
+        <label>Name</label>
+        <input type="text" name="name" value="{{ fest.name if fest else '' }}" required>
+        <br>
+        <label>Description</label>
+        <textarea name="description">{{ fest.description if fest else '' }}</textarea>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+    <br>
+    <a href="{{ url_for('admin.list_fests') }}">Back to Fests</a>
+</body>
+</html>

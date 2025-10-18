@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Fests</title>
+</head>
+<body>
+    <h1>Manage Fests</h1>
+    <a href="{{ url_for('admin.add_fest') }}">Add New Fest</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fest in fests %}
+            <tr>
+                <td>{{ fest.name }}</td>
+                <td>{{ fest.description }}</td>
+                <td>
+                    <a href="{{ url_for('admin.edit_fest', fest_id=fest.id) }}">Edit</a>
+                    <form method="POST" action="{{ url_for('admin.delete_fest', fest_id=fest.id) }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('admin.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

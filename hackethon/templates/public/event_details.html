@@ -1,0 +1,25 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}{{ event.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4">{{ event.name }}</h1>
+            <p class="lead">{{ event.description }}</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2>Winners</h2>
+            <ul class="list-group">
+                {% for winner in event.winners %}
+                    <li class="list-group-item bg-dark text-white">{{ winner.name }} - {{ winner.class_info.name }} - <span class="leaderboard-{{ winner.medal.lower() }}">{{ winner.medal }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

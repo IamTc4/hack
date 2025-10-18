@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Events</title>
+</head>
+<body>
+    <h1>Manage Events</h1>
+    <a href="{{ url_for('admin.add_event') }}">Add New Event</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Fest</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.fest.name }}</td>
+                <td>
+                    <a href="{{ url_for('admin.edit_event', event_id=event.id) }}">Edit</a>
+                    <form method="POST" action="{{ url_for('admin.delete_event', event_id=event.id) }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('admin.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ 'Edit' if event else 'Add' }} Event</title>
+</head>
+<body>
+    <h1>{{ 'Edit' if event else 'Add' }} Event</h1>
+    <form method="POST">
+        <label>Name</label>
+        <input type="text" name="name" value="{{ event.name if event else '' }}" required>
+        <br>
+        <label>Description</label>
+        <textarea name="description">{{ event.description if event else '' }}</textarea>
+        <br>
+        <label>Fest</label>
+        <select name="fest_id" required>
+            {% for fest in fests %}
+            <option value="{{ fest.id }}" {% if event and event.fest_id == fest.id %}selected{% endif %}>{{ fest.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+    <br>
+    <a href="{{ url_for('admin.list_events') }}">Back to Events</a>
+</body>
+</html>
