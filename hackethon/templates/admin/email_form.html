@@ -1,0 +1,28 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}{% if draft %}Edit{% else %}Create{% endif %} Email{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">{% if draft %}Edit{% else %}Create{% endif %} Email</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" value="{{ draft.subject if draft else '' }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label">Body</label>
+            <textarea class="form-control" id="body" name="body" rows="10" required>{{ draft.body if draft else '' }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="recipient_group" class="form-label">Recipient Group</label>
+            <select class="form-select" id="recipient_group" name="recipient_group" required>
+                <option value="all" {% if draft and draft.recipient_group == 'all' %}selected{% endif %}>All Students</option>
+                <option value="class_reps" {% if draft and draft.recipient_group == 'class_reps' %}selected{% endif %}>Class Representatives</option>
+                <option value="admins" {% if draft and draft.recipient_group == 'admins' %}selected{% endif %}>Admins</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Draft</button>
+    </form>
+</div>
+{% endblock %}

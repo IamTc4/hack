@@ -5,27 +5,15 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">Department Standings</h1>
-    <div class="table-responsive">
-        <table class="table table-dark table-striped table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Department</th>
-                    <th scope="col" class="leaderboard-gold">Gold</th>
-                    <th scope="col" class="leaderboard-silver">Silver</th>
-                    <th scope="col" class="leaderboard-bronze">Bronze</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for department, medals in standings %}
-                <tr>
-                    <td>{{ department }}</td>
-                    <td class="leaderboard-gold">{{ medals.gold }}</td>
-                    <td class="leaderboard-silver">{{ medals.silver }}</td>
-                    <td class="leaderboard-bronze">{{ medals.bronze }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div id="chart-container" style="height: 400px;"></div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-center">Hall of Fame</h2>
+            <div id="hall-of-fame" class="d-flex flex-wrap justify-content-center">
+                <!-- Hall of Fame content will be dynamically inserted here -->
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

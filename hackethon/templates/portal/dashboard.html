@@ -1,0 +1,14 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}Portal Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Student/CR Portal</h1>
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="{{ url_for('portal.submit_result') }}" class="btn btn-primary">Submit Result</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'includes/_base.html' %}
+
+{% block title %}Submit Result{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Submit Result</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-success">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('portal.submit_result') }}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Winner's Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="class_id" class="form-label">Class</label>
+            <select class="form-select" id="class_id" name="class_id" required>
+                {% for class in classes %}
+                    <option value="{{ class.id }}">{{ class.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="event_id" class="form-label">Event</label>
+            <select class="form-select" id="event_id" name="event_id" required>
+                {% for event in events %}
+                    <option value="{{ event.id }}">{{ event.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="medal" class="form-label">Medal</label>
+            <select class="form-select" id="medal" name="medal" required>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+                <option value="bronze">Bronze</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

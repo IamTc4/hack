@@ -12,17 +12,43 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-12">
+        <div class="col-md-8">
             <h2 class="text-center">Live Stream</h2>
-            <div class="ratio ratio-16x9">
-                {% set video_id = youtube_url | youtube_video_id %}
-                {% if video_id %}
-                    <iframe src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                {% else %}
-                    <div class="d-flex justify-content-center align-items-center bg-dark text-white">
-                        <p>No live stream is currently active.</p>
-                    </div>
-                {% endif %}
+            <div id="stream-container">
+                <div class="ratio ratio-16x9">
+                    {% set video_id = youtube_url | youtube_video_id %}
+                    {% if video_id %}
+                        <iframe src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% else %}
+                        <div class="d-flex justify-content-center align-items-center bg-dark text-white" style="min-height: 400px;">
+                            <p>No live stream is currently active.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="countdown-container" class="text-center bg-dark p-3 rounded" style="display: none;">
+                <h3 class="text-white">Next Stream Starts In:</h3>
+                <div id="countdown-timer" class="display-4 text-warning"></div>
+                <a href="{{ youtube_url }}" target="_blank" class="btn btn-danger mt-3">Set Reminder on YouTube</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2 class="text-center">Live Chat</h2>
+            <div id="chat-container" class="border rounded p-3" style="height: 400px; overflow-y: scroll; background-color: #2b2b2b;">
+                <!-- Chat messages will be dynamically inserted here -->
+            </div>
+            <div id="admin-question-container" class="mt-2 p-2 rounded" style="background-color: #000080; display: none;">
+                <p id="admin-question-text" class="mb-1 text-white"></p>
+                <button id="dismiss-question-btn" class="btn btn-sm btn-warning">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-center">Event Highlights</h2>
+            <div id="highlight-reel" class="d-flex flex-wrap justify-content-center">
+                <!-- Highlight videos will be dynamically inserted here -->
             </div>
         </div>
     </div>

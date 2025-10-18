@@ -1,26 +1,61 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Dashboard</title>
-</head>
-<body>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome, you are logged in!</p>
+{% extends 'includes/_base.html' %}
 
-    <h2>Overview</h2>
-    <ul>
-        <li>Total Fests: {{ fest_count }}</li>
-        <li>Total Events: {{ event_count }}</li>
-        <li>Total Winners: {{ winner_count }}</li>
-    </ul>
+{% block title %}Admin Dashboard{% endblock %}
 
-    <h2>Management</h2>
-    <ul>
-        <li><a href="{{ url_for('admin.list_fests') }}">Manage Fests</a></li>
-        <li><a href="{{ url_for('admin.list_events') }}">Manage Events</a></li>
-        <li><a href="{{ url_for('admin.list_winners') }}">Manage Winners</a></li>
-        <li><a href="{{ url_for('admin.settings') }}">Settings</a></li>
-    </ul>
-    <a href="{{ url_for('admin.logout') }}">Logout</a>
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Admin Dashboard</h1>
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Fests</h5>
+                    <p class="card-text display-4">{{ fest_count }}</p>
+                    <a href="{{ url_for('admin.list_fests') }}" class="btn btn-primary">Manage Fests</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center bg-secondary">
+                <div class="card-body">
+                    <h5 class="card-title">Communications</h5>
+                    <p class="card-text display-4"><i class="fas fa-envelope"></i></p>
+                    <a href="{{ url_for('email.list_emails') }}" class="btn btn-light">Email System</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Events</h5>
+                    <p class="card-text display-4">{{ event_count }}</p>
+                    <a href="{{ url_for('admin.list_events') }}" class="btn btn-primary">Manage Events</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Winners</h5>
+                    <p class="card-text display-4">{{ winner_count }}</p>
+                    <a href="{{ url_for('admin.list_winners') }}" class="btn btn-primary">Manage Winners</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Live Control</h5>
+                    <p class="card-text display-4"><i class="fas fa-satellite-dish"></i></p>
+                    <a href="{{ url_for('chat.admin_chat') }}" class="btn btn-light">Chat Console</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="{{ url_for('admin.settings') }}" class="btn btn-secondary">System Settings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
