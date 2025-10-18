@@ -26,14 +26,17 @@
                 <ul class="navbar-nav ms-auto">
                     {% if current_user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+                            <a class="nav-link" href="{{ url_for('portal.dashboard') }}">Portal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.dashboard') }}">Admin</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('admin.logout') }}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('admin.login') }}">Admin Login</a>
+                            <a class="nav-link" href="{{ url_for('admin.login') }}">Login</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -46,5 +49,13 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const countdownTime = "{{ countdown_time|default('', True) }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/highlights.js') }}"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="{{ url_for('static', filename='js/leaderboard.js') }}"></script>
 </body>
 </html>

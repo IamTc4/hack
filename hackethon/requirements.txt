@@ -4,3 +4,4 @@ Flask-SQLAlchemy
 firebase-admin
 psycopg2-binary
 python-dotenv
+gunicorn

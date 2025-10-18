@@ -12,6 +12,9 @@ from models.user import User
 # Import blueprints
 from routes.public import public_bp
 from routes.admin import admin_bp
+from routes.chat import chat_bp
+from routes.portal import portal_bp
+from routes.email_system import email_bp
 
 # Import utils
 from utils import youtube_video_id
@@ -40,6 +43,9 @@ def create_app(config_class=Config):
     # Register Blueprints
     app.register_blueprint(public_bp)
     app.register_blueprint(admin_bp, url_prefix='/admin')
+    app.register_blueprint(chat_bp)
+    app.register_blueprint(portal_bp)
+    app.register_blueprint(email_bp)
 
     # Register custom template filters
     app.jinja_env.filters['youtube_video_id'] = youtube_video_id

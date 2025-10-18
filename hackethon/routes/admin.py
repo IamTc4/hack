@@ -43,19 +43,35 @@ def dashboard():
 def settings():
     if request.method == 'POST':
         youtube_url = request.form.get('youtube_url')
-        config = SystemConfig.query.filter_by(key='YOUTUBE_LIVE_URL').first()
-        if not config:
-            config = SystemConfig(key='YOUTUBE_LIVE_URL', value=youtube_url)
-            db.session.add(config)
+        countdown_time = request.form.get('countdown_time')
+
+        # Update YouTube URL
+        youtube_config = SystemConfig.query.filter_by(key='YOUTUBE_LIVE_URL').first()
+        if not youtube_config:
+            youtube_config = SystemConfig(key='YOUTUBE_LIVE_URL', value=youtube_url)
+            db.session.add(youtube_config)
         else:
-            config.value = youtube_url
+            youtube_config.value = youtube_url
+
+        # Update Countdown Time
+        countdown_config = SystemConfig.query.filter_by(key='COUNTDOWN_TIME').first()
+        if not countdown_config:
+            countdown_config = SystemConfig(key='COUNTDOWN_TIME', value=countdown_time)
+            db.session.add(countdown_config)
+        else:
+            countdown_config.value = countdown_time
+
         db.session.commit()
         flash('Settings updated successfully!')
         return redirect(url_for('admin.settings'))
 
     youtube_url_config = SystemConfig.query.filter_by(key='YOUTUBE_LIVE_URL').first()
+    countdown_time_config = SystemConfig.query.filter_by(key='COUNTDOWN_TIME').first()
+
     youtube_url = youtube_url_config.value if youtube_url_config else ''
-    return render_template('admin/settings.html', youtube_url=youtube_url)
+    countdown_time = countdown_time_config.value if countdown_time_config else ''
+
+    return render_template('admin/settings.html', youtube_url=youtube_url, countdown_time=countdown_time)
 
 # Fest Management
 @admin_bp.route('/fests')
@@ -149,7 +165,7 @@ def list_winners():
 def add_winner():
     events = Event.query.all()
     classes = Class.query.all()
-    if request..method == 'POST':
+    if request.method == 'POST':
         name = request.form.get('name')
         class_id = request.form.get('class_id')
         event_id = request.form.get('event_id')
